@@ -1,0 +1,222 @@
+body {
+    margin: 0;
+  }
+  
+  /* Style the header */
+  .header {
+    background-color: #003BCF;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+  }
+  
+  .header h2 {
+  float:left
+  }
+  
+  .header img {
+  float: left;
+  margin-left: 1%;
+  }
+  .header h1 {
+  text-align: center;
+  }
+  
+  .flex-parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .box {
+    border-radius: 5px;
+    line-height: 40%;
+    width: 250px;
+    background-color: White;
+    margin: 20px;
+    padding: 10px;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(235,230,235,1);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(235,230,235,1);
+    box-shadow: 0px 0px 10px 0px rgba(235,230,235,1);
+    
+  }
+  
+  .vLine {
+        border-left: 3px solid rgb(128, 0, 128);
+        height: 80%;
+        margin-left: 5%;
+     }
+  .box h3 {
+  margin-left: 5%;
+  text-align: left;
+  color: #A7AFB1;
+  }
+  .box h4 {
+  margin-left: 5%;
+  text-align: left;
+  color: #3A4147;
+  }
+  .box h5 {
+  margin-left: 5%;
+  text-align: left;
+  color: #4C5258;
+  }
+  
+  #sidedrawer ul {
+    list-style: none;
+  }
+  
+  #sidedrawer > ul {
+    padding-left: 0px;
+  }
+  
+  #sidedrawer > ul > li:first-child {
+    padding-top: 15px;
+  }
+  
+  #sidedrawer strong {
+    display: block;
+    padding: 15px 22px;
+    cursor: pointer;
+    color: white;
+  box-shadow:inset 0px 1px 0px 0px #54a3f7;
+  background:linear-gradient(to bottom, #2F57BC 5%, #2F57BC 100%);
+  background-color:#2F57BC;
+  background: linear-gradient(#284BA2, #3C6FEF);
+  }
+  
+  #sidedrawer strongbutton {
+    display: block;
+    padding: 15px 22px;
+    cursor: pointer;
+    color: white;
+  
+  }
+  
+  #sidedrawer strong:hover {
+    background-color: #FA4500;
+  }
+  
+  #sidedrawer strong + ul > li {
+    padding: 6px 0px;
+  }
+  
+  .closebtn{
+    cursor: pointer;
+  }
+  
+  .sfc-style-root .sf-element-table-cell.sfpc-odd-row {
+     background-color: #ffffff;
+     color:#000000;
+  }
+  .sfc-style-root .sf-element-table-cell.sfpc-even-row {
+     background-color: #ffffff;
+     color:#000000;
+  }
+  .sfc-style-root .sf-element-table-cell {
+  background-color: #ffffff;
+  color: blue;
+  }
+  
+  .space {
+      height: 10px;
+  }
+  
+  .pie {
+    position: relative;
+    display: inline-block;
+    background-image: conic-gradient(
+      rgba(0,0,0,0) calc(3.6deg * var(--percent)),
+      rgba(0,0,0,1) calc(3.6deg * var(--percent))
+    );
+    background-blend-mode: overlay;
+    background-position: 50% 50%;
+    background-size: 150%; /* oversize bg image to prevent "underdraw" */
+    width: 3.75em;
+    height: 3.75em;
+    border-radius: 50%;
+  }
+  
+  /* show the percentage (thanks to Ana Tudor for the counter() trick) */
+  .pie--value::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    counter-reset: percent var(--percent);
+    content: counter(percent) "%";
+    color: #fff;
+    text-shadow: 0 0 1px #000;
+  }
+  
+  .pie--disc::before {
+    content: '';
+    position: absolute;
+    top: .5em;
+    left: .5em;
+    right: .5em;
+    bottom: .5em;
+    border-radius: 50%;
+    background: #fff;
+  }
+  
+  .pie--disc::after {
+    color: #000;
+    text-shadow: none;
+  }
+  
+  
+  /* demo styles
+  ----------------------------------------------------- */
+  
+  body::before {
+    color: red;
+    font-size: 150%;
+    content: "This browser doesn't support conical graidents yet";
+  }
+  
+  @supports (background: conic-gradient(red, blue)) {
+    body::before {
+      content: '';
+    }
+  }
+  
+  body {
+    font: 90%/1.5 Arial;
+    background: #fcf3f0;
+    text-align: center;
+  }
+  
+  .pie {
+    border: .15em solid #fff;
+    box-shadow: 0 .075em .2em .05em rgba(0,0,0,.25);
+    margin: .75rem;
+  }
+  .pie:nth-child(1) {
+    background-color: #d44;
+  }
+  .pie:nth-child(2) {
+    background-color: #fc3;
+  }
+  .pie:nth-child(3) {
+    background-color: #ac0;
+  }
+  .pie:nth-child(4) {
+    background-color: #0ac;
+  }
+  .pie:nth-child(5) {
+    background-color: #d6b;
+  }
+  
+  .big {
+    font-size: 200%;
+  }
+  .med {
+    font-size: 150%;
+  }
+  .sml {
+    font-size: 100%;
+  }
+  
