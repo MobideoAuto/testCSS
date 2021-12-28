@@ -226,6 +226,19 @@ background: linear-gradient(to bottom,  #6db3f2 0%,#1e69de 100%); /* W3C, IE10+,
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6db3f2', endColorstr='#1e69de',GradientType=0 ); /* IE6-9 */
 
 }
+
+table, td, th {
+  border: 1px solid black;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td {
+  text-align: center;
+}
 .switch {
   position: relative;
   display: inline-block;
