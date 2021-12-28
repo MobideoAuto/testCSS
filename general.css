@@ -228,12 +228,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6db3f2', end
 }
 
 table, td, th {
-  border: 1px solid black;
+  border: 0px solid black;
 }
 
 table {
   border-collapse: collapse;
-  width: 100%;
+  width: 50%;
 }
 
 td {
