@@ -4,12 +4,14 @@ body {
 
 /* Style the header */
 .header {
+height:40px;
   background-color: #3C6FEF;
   padding: 0px;
   text-align: center;
   color: white;
-  border-top-right-radius: 15px;
-  border-top-left-radius: 15px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+border-bottom-right-radius: 10px;
 }
 
 .header h2 {
@@ -226,19 +228,6 @@ background: linear-gradient(to bottom,  #6db3f2 0%,#1e69de 100%); /* W3C, IE10+,
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6db3f2', endColorstr='#1e69de',GradientType=0 ); /* IE6-9 */
 
 }
-
-table, td, th {
-  border: 0px solid black;
-}
-
-table {
-  border-collapse: collapse;
-  width: 50%;
-}
-
-td {
-  text-align: center;
-}
 .switch {
   position: relative;
   display: inline-block;
@@ -325,4 +314,9 @@ display: none;
 .slider.round:before {
   border-radius: 50%;
 
+}
+
+.dark-mode {
+  background-color: black;
+  color: white;
 }
