@@ -1,0 +1,56 @@
+name: Branch Validation
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  validate_branch_name:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Validate branch name and ignore if merged from dev, qa, or main
+        run: |
+          source_branch=$(echo "${{ github.event.pull_request.head.ref }}" | awk -F'/' '{print $1}')
+          target_branch=$(echo "${{ github.event.pull_request.base.ref }}" | awk -F'/' '{print $1}')
+
+          # Ignore validation if merged from dev, qa, or main
+          if [[ "$target_branch" =~ ^(dev|qa|main)$ ]]; then
+            echo "Validation ignored for merge to branch '$target_branch'."
+            exit 0
+          fi
+
+          # Check branch name format for other branches
+          branch_name=$(echo "${{ github.ref }}" | awk -F'/' '{print $3}')
+          if [[ ! "$branch_name" =~ ^(defect|userstory|hotfix|qa-hotfix)/.*$ ]]; then
+            echo "Invalid branch name. Branch name should start with 'defect/', 'userstory/', 'hotfix/', or 'qa-hotfix/', followed by additional characters."
+            exit 1
+          fi
+
+      - name: Get PR author email
+        id: pr_author_email
+        run: |
+          echo "::set-output name=email::${{ github.event.pull_request.user.login }}"
+
+      - name: Close PR on validation failure
+        if: ${{ failure() }}
+        run: |
+          TOKEN="${{ secrets.GITHUB_TOKEN }}"
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          API_URL="https://api.github.com/repos/${{ github.repository }}/pulls/${PR_NUMBER}"
+          curl -X PATCH -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" -d '{"state": "closed"}' "$API_URL"
+
+      - name: Comment on PR before closing
+        if: ${{ failure() }}
+        run: |
+          TOKEN="${{ secrets.GITHUB_TOKEN }}"
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          DEVELOPER="${{ github.event.pull_request.user.login }}"
+          API_URL="https://api.github.com/repos/${{ github.repository }}/issues/${PR_NUMBER}/comments"
+          BODY="Branch validation failed. Please fix the branch name.\n\nThe branch name should start with 'defect/', 'userstory/', 'hotfix/', or 'qa-hotfix/', followed by additional characters.\n\nFor example, 'defect/fix-something' or 'userstory/add-feature'.\n\nDeveloper: @${DEVELOPER} .\n\nIf there's any issue, it's the "Metoraf fault"."
+          curl -X POST -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" -d "{\"body\": \"$BODY\"}" "$API_URL"
